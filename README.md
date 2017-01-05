@@ -13,6 +13,11 @@
 <plugin type="com.puyixiaowo.mybatis.generator.plugin.NamespacePlugin">
 	<property name="packageName" value="com.puyixiaowo.tnews.dao.impl"/>
 </plugin>
+
+<!-- 可将INTEGER(11)转为Long，tinyint(1)转为Integer类型 -->
+<javaTypeResolver type="com.puyixiaowo.mybatis.generator.type.NumberTypeResolver">
+	<property name="forceBigDecimals" value="false" />
+</javaTypeResolver>
 ```
 
 NamespacePlugin需修改源码

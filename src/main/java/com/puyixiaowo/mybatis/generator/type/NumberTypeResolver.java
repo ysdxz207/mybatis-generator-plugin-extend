@@ -12,7 +12,7 @@ public class NumberTypeResolver extends JavaTypeResolverDefaultImpl {
 	@Override
 	public FullyQualifiedJavaType calculateJavaType(
 			IntrospectedColumn introspectedColumn) {
-		FullyQualifiedJavaType answer;
+		FullyQualifiedJavaType answer = null;
 		switch (introspectedColumn.getJdbcType()) {
 		case Types.INTEGER:
 			if (introspectedColumn.getLength() > 24 || forceBigDecimals) {
@@ -31,14 +31,33 @@ public class NumberTypeResolver extends JavaTypeResolverDefaultImpl {
 			answer = new FullyQualifiedJavaType(Integer.class.getName());
 			break;
 		case Types.BIT:
-			answer = new FullyQualifiedJavaType(Integer.class.getName());
+				answer = new FullyQualifiedJavaType(Integer.class.getName());
 			break;
 
 		default:
-			answer = super.calculateJavaType(introspectedColumn);
+			answer = null;
 			break;
+		}
+		if (answer == null) {
+			answer = super.calculateJavaType(introspectedColumn);
 		}
 		return answer;
 	}
 
+	@Override
+	public String calculateJdbcTypeName(IntrospectedColumn introspectedColumn) {
+		String answer = null;
+		switch (introspectedColumn.getJdbcType()) {
+		case Types.BIT:
+				answer = "INTEGER";
+			break;
+		default:
+			
+		}
+		if (answer == null ) {
+			answer = super.calculateJdbcTypeName(introspectedColumn);
+		}
+		return answer;
+	}
+	
 }
