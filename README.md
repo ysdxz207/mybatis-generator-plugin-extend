@@ -1,4 +1,5 @@
-#mybatis-generator-plugin-extend
+# mybatis-generator-plugin-extend
+
 ```xml
 <!-- 给实体添加序列UID 而不实现接口-->
 <plugin type="com.puyixiaowo.mybatis.generator.plugin.AddSerialVersionUIDPlugin"></plugin>
@@ -13,4 +14,5 @@
 	<property name="packageName" value="com.puyixiaowo.tnews.dao.impl"/>
 </plugin>
 ```
+
 NamespacePlugin需修改源码
