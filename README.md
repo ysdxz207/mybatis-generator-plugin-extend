@@ -16,7 +16,7 @@
 	<property name="minusPrefix" value="4" /><!--mapper前缀减去多少个字母，非必须，如原实体名为：TestNews,删减后为:<mapper namespace="com.puyixiaowo.tnews.dao.impl.NewsDaoImpl">-->
 </plugin>
 
-<!-- 可将INTEGER(11)转为Long，tinyint(1)转为Integer类型 -->
+<!-- 可将INTEGER(11)转为Long；tinyint(1)，int(3)转为Integer类型 -->
 <javaTypeResolver type="com.puyixiaowo.mybatis.generator.type.NumberTypeResolver">
 	<property name="forceBigDecimals" value="false" />
 </javaTypeResolver>
