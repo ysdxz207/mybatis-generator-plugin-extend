@@ -13,24 +13,39 @@ import org.mybatis.generator.internal.util.StringUtility;
 public class NamespacePlugin extends PluginAdapter{
 	
 	private static final String PACKAGE_NAME = "packageName";
+	private static final String CLASS_NAME_APPEND = "classNameAppend";
+	private static final String MINUS_PREFIX = "minusPrefix";
 	
 	private String packageName = "";
-	private String classNameAppend = "DaoImpl";
+	private String classNameAppend = "Mapper";
+	private int minusPrefix = 0;
 	
 	@Override
 	public boolean validate(List<String> warning) {
+		//package name
 		String packageNameString = properties.getProperty(PACKAGE_NAME);
 		if (!StringUtility.stringHasValue(packageNameString)) {
 			warning.add(String.format(PACKAGE_NAME, this.getClass().getSimpleName()));
 		}
 		packageName = packageNameString;
-		
+		//class name append
+		String classNameAppendString = properties.getProperty(CLASS_NAME_APPEND);
+		if (StringUtility.stringHasValue(classNameAppendString)) {
+			classNameAppend = classNameAppendString;
+		}
+		//minus prefix
+		String minusPrefixString = properties.getProperty(MINUS_PREFIX);
+		if (StringUtility.stringHasValue(minusPrefixString)) {
+			minusPrefix = Integer.valueOf(minusPrefixString);
+		}
 		return StringUtility.stringHasValue(packageNameString);
 	}
 
 	@Override
 	public void initialized(IntrospectedTable introspectedTable) {
 		super.initialized(introspectedTable);
+		
+		
 		setMapperNamespace(introspectedTable);
 	}
 
@@ -47,12 +62,9 @@ public class NamespacePlugin extends PluginAdapter{
 	 * @return
 	 */
 	public String getMapperNamespace(IntrospectedTable introspectedTable){
-		String replaceStrings [] = {"com.edu.shop.entity.Edu", "com.edu.member.entity.Edu"};
-		for (String replaceStr : replaceStrings) {
-			if (introspectedTable.getBaseRecordType().indexOf(replaceStr) != -1){
-				return introspectedTable.getBaseRecordType().replace(replaceStr, "") + classNameAppend;
-			}
-		}
-		return "/";
+		String entityFullName = introspectedTable.getBaseRecordType();
+		String entityName = entityFullName.substring(entityFullName.lastIndexOf(".") + 1);
+		
+		return entityName.substring(minusPrefix) + classNameAppend;
 	}
 }
