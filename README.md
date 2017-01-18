@@ -11,7 +11,9 @@
 
 <!-- mapper xml namespace 不生成mapper.java 单独生成xml修改mapper的namespace-->
 <plugin type="com.puyixiaowo.mybatis.generator.plugin.NamespacePlugin">
-	<property name="packageName" value="com.puyixiaowo.tnews.dao.impl"/>
+	<property name="packageName" value="com.puyixiaowo.tnews.dao.impl"/><!--命名空间包，必须-->
+	<property name="classNameAppend" value="DaoImpl" /><!--mapper后缀，非必须，默认"Mapper",如：<mapper namespace="com.puyixiaowo.tnews.dao.impl.TestNewsDaoImpl">-->
+	<property name="minusPrefix" value="4" /><!--mapper前缀减去多少个字母，非必须，如原实体名为：TestNews,删减后为:<mapper namespace="com.puyixiaowo.tnews.dao.impl.NewsDaoImpl">-->
 </plugin>
 
 <!-- 可将INTEGER(11)转为Long，tinyint(1)转为Integer类型 -->
@@ -19,5 +21,3 @@
 	<property name="forceBigDecimals" value="false" />
 </javaTypeResolver>
 ```
-
-NamespacePlugin需修改源码
