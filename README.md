@@ -18,6 +18,5 @@
 
 <!-- 可将INTEGER(11)转为Long；tinyint(1)，int(3)转为Integer类型 -->
 <javaTypeResolver type="com.puyixiaowo.mybatis.generator.type.NumberTypeResolver">
-	<property name="forceBigDecimals" value="false" />
 </javaTypeResolver>
 ```
