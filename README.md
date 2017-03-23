@@ -16,13 +16,7 @@
 	<property name="minusPrefix" value="4" /><!--mapper前缀减去多少个字母，非必须，如原实体名为：TestNews,删减后为:<mapper namespace="com.puyixiaowo.tnews.dao.impl.NewsDaoImpl">-->
 </plugin>
 
-<!-- 数字类型，默认longStart=10,integerStart=4,int(3)为Short -->
+<!-- 数字类型，默认int(1以上0)转为Long,tinyint(1)转为Integer-->
 <javaTypeResolver type="com.puyixiaowo.mybatis.generator.type.NumberTypeResolver">
-	<property name="longStart" value="10" /><!--int(10)大于等于10位则转为Long-->
-	<property name="integerStart" value="4" /><!--int(4)大于等于4位则转为Integer-->
-	<property name="tinyintToInteger" value="true" /><!--tinyint类型	
-转Integer，默认true-->
-	<property name="bitToInteger" value="true" /><!--bit类型	
-转Integer,默认true-->
 </javaTypeResolver>
 ```
