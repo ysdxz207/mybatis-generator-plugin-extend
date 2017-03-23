@@ -1,7 +1,7 @@
 # mybatis-generator-plugin-extend
 
 ```xml
-<!-- 给实体添加序列UID 而不实现接口-->
+<!-- 给实体添加序列UID 而不实现Serializable接口-->
 <plugin type="com.puyixiaowo.mybatis.generator.plugin.AddSerialVersionUIDPlugin"></plugin>
 
 <!-- 删除主键,当实体配置rootClass继承了baseEntity可使用此插件删除主键 -->
